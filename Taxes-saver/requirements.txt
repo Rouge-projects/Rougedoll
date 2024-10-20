@@ -1,0 +1,6 @@
+google-cloud-aiplatform >= 1.31.0
+flask
+google-cloud-logging
+IPython
+google-cloud-discoveryengine==0.11.14
+google-api-core==2.19.0

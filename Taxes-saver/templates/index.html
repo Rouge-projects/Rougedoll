@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taxes with Llama</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #fafafa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .chat-container {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 24px;
+        width: 100%;
+        max-width: 600px;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.08);
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 24px;
+        color: #333;
+        font-size: 24px;
+        font-weight: 500;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .row {
+        display: flex;
+        gap: 50px;
+      }
+
+      label {
+        font-weight: 500;
+        color: #555;
+      }
+
+      input[type="text"], select {
+        width: 100%;
+        padding: 12px;
+        margin-top: 4px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+      }
+
+      input[type="text"]:focus, select:focus {
+        border-color: #3f51b5;
+        outline: none;
+      }
+
+      .radio-group {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .radio-group label {
+        margin: 0;
+      }
+
+      input[type="radio"] {
+        margin-right: 8px;
+      }
+
+      button[type="submit"] {
+        background-color: #3f51b5;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 12px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 500;
+        transition: background-color 0.3s;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #303f9f;
+      }
+
+      #result {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 16px;
+        background-color: #f5f5f5;
+        min-height: 100px;
+        overflow-wrap: break-word;
+        margin-top: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chat-container">
+      <h1>Taxes with LLama</h1>
+
+      <form id="chat-form">
+        <div class="row">
+          <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div>
+            <label for="gross-salary">Gross Salary</label>
+            <input type="text" id="gross-salary" name="gross-salary" required>
+          </div>
+        </div>
+
+        <div style="padding-right: 2rem;">
+          <label for="city">City</label>
+        <input type="text" id="city" name="city" required>
+        <label for="state">State</label>
+        <input type="text" id="state" name="state" required>
+        </div>
+
+        <div class="radio-group">
+          <label>Age Group:</label>
+          <label><input type="radio" name="age-group" value="0-60" required> 0-60</label>
+          <label><input type="radio" name="age-group" value="60-80"> 60-80</label>
+          <label><input type="radio" name="age-group" value="80+"> 80+</label>
+        </div>
+
+        <label for="investment-risk">Investment Risk</label>
+        <select id="investment-risk" name="investment-risk" required>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+
+        <div style="margin-right: 2rem;">
+          <div class="row">
+            <div>
+              <label for="monthly-rent">Monthly Rent</label>
+              <input type="text" id="monthly-rent" name="monthly-rent" required>
+            </div>
+            <div>
+              <label for="pension">Pension</label>
+              <input type="text" id="pension" name="pension" required>
+            </div>
+          </div>
+  
+          <label for="investment-specific">Invested In?</label>
+          <input type="text" id="investment-specific" name="investment-specific" required>
+          <label for="financial-condition">Describe about your financial-condition</label>
+          <input type="text" id="financial-condition" name="financial-condition" required>
+  
+        </div>
+        <button type="submit" id="submitBtn">Submit</button>
+      </form>
+
+      <div id="result"></div>
+    </div>
+
+    <script>
+      window.onload = function () {
+        document
+          .getElementById("chat-form")
+          .addEventListener("submit", function (event) {
+            // Prevent the form from submitting and refreshing the page
+            event.preventDefault();
+            let submitBtn = document.getElementById("submitBtn");
+            submitBtn.textContent = "loading ...";
+
+            let formData = {
+              grossSalary: document.getElementById("gross-salary").value,
+              ageGroup: document.querySelector('input[name="age-group"]:checked').value,
+              investmentRisk: document.getElementById("investment-risk").value,
+              monthlyRent: document.getElementById("monthly-rent").value,
+              pension: document.getElementById("pension").value,
+              investmentSpecific: document.getElementById("investment-specific").value,
+              financialCondition: document.getElementById("financial-condition").value + `how to save taxes`
+            };
+
+            let queryString = new URLSearchParams(formData).toString();
+            let url = `/palm2?user_input=${encodeURIComponent(queryString)}`;
+
+            fetch(url)
+              .then((res) => res.json())
+              .then((data) => {
+                let content = data.content;
+                content = content
+                  .replace(/##\s(.*)/g, "<h2>$1</h2>") // Convert ## headings to <h2>
+                  .replace(/\d+\.\s/g, "<br><strong>$&</strong>") // Add line breaks before numbered points and make numbers bold
+                  .replace(/\*(.*?)\*/g, "<em>$1</em>") // Convert *italics* to <em>
+                  .replace(/₹/g, "&#8377;");
+
+                let resultDiv = document.getElementById("result");
+                resultDiv.innerHTML = content;
+                submitBtn.textContent = "Submit";
+              })
+              .catch((error) => {
+                console.error("Error fetching PaLM response:", error);
+              });
+          });
+      };
+    </script>
+  </body>
+</html>
