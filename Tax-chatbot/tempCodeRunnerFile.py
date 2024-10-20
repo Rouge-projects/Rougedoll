@@ -1,0 +1,1 @@
+aiplatform.init(project=PROJECT_ID, location=REGION)
