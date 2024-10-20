@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dummy Income Tax Form</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 50px;
+      }
+      h2 {
+        text-align: center;
+      }
+      .form-container {
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      .form-field {
+        margin-bottom: 20px;
+      }
+      .form-field label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      .form-field input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+      }
+      .form-field select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+      }
+      .submit-btn {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+      .submit-btn:hover {
+        background-color: #45a049;
+      }
+      .tooltip {
+        display: none;
+        position: absolute;
+        background-color: #333;
+        color: white;
+        padding: 5px;
+        border-radius: 5px;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Dummy Income Tax Form</h2>
+
+    <div class="form-container">
+      <form id="dummyTaxForm">
+        <div class="form-field">
+          <label for="panInputField">PAN Number</label>
+          <input
+            type="text"
+            id="panInputField"
+            name="panInputField"
+            placeholder="Enter PAN"
+          />
+        </div>
+
+        <div class="form-field">
+          <label for="nameInputField">Full Name</label>
+          <input
+            type="text"
+            id="nameInputField"
+            name="nameInputField"
+            placeholder="Enter full name"
+          />
+        </div>
+
+        <div class="form-field">
+          <label for="dobInputField">Date of Birth</label>
+          <input type="date" id="dobInputField" name="dobInputField" />
+        </div>
+
+        <div class="form-field">
+          <label for="financialYearInputField">Financial Year</label>
+          <select id="financialYearInputField" name="financialYearInputField">
+            <option value="">Select Financial Year</option>
+            <option value="2023-2024">2023-2024</option>
+            <option value="2022-2023">2022-2023</option>
+            <option value="2021-2022">2021-2022</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="incomeInputField">Annual Income</label>
+          <input
+            type="number"
+            id="incomeInputField"
+            name="incomeInputField"
+            placeholder="Enter annual income"
+          />
+        </div>
+
+        <div class="form-field">
+          <label for="taxPaidInputField">Tax Paid</label>
+          <input
+            type="number"
+            id="taxPaidInputField"
+            name="taxPaidInputField"
+            placeholder="Enter tax paid"
+          />
+        </div>
+
+        <div class="form-field">
+          <label for="assessmentYearInputField">Assessment Year</label>
+          <select id="assessmentYearInputField" name="assessmentYearInputField">
+            <option value="">Select Assessment Year</option>
+            <option value="2024-2025">2024-2025</option>
+            <option value="2023-2024">2023-2024</option>
+            <option value="2022-2023">2022-2023</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="bankAccountInputField">Bank Account Number</label>
+          <input
+            type="text"
+            name="bankAccountInputField"
+            id="bankAccountInputField"
+            placeholder="Enter bank account number"
+          />
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitForm">Submit</button>
+      </form>
+    </div>
+
+    <!-- JavaScript to simulate autofill and form submission -->
+    <!-- <script>
+      document
+        .getElementById("submitForm")
+        .addEventListener("click", function () {
+          alert("Form Submitted!");
+        });
+
+      // Example autofill function
+      function autofillForm() {
+        document.getElementById("panInputField").value = "ABCDE1234F";
+        document.getElementById("nameInputField").value = "John Doe";
+        document.getElementById("dobInputField").value = "1990-01-01";
+        document.getElementById("financialYearInputField").value = "2023-2024";
+        document.getElementById("incomeInputField").value = "500000";
+        document.getElementById("taxPaidInputField").value = "25000";
+        document.getElementById("assessmentYearInputField").value = "2024-2025";
+        document.getElementById("bankAccountInputField").value = "1234567890";
+      }
+
+      // Simulate autofill after 2 seconds (for testing)
+      setTimeout(autofillForm, 2000);
+    </script> -->
+  </body>
+</html>

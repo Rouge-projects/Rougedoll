@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/styles.css" />
+    <title>Chatbot UI</title>
+  </head>
+  <body>
+    <main>
+      <div class="chatbot-container">
+        <div class="chatbot-header">
+          <!-- <h3 class="heading">Click to Autofill Form</h3>
+          <button class="autofill-button">Autofill</button> -->
+
+          <h3 class="form-chat-assistant">Taxes with LLaMA</h3>
+        </div>
+        <div class="chatbot-conversation-container">
+          <!-- <div class="speech speech-ai">Hello! How can I assist you?</div> -->
+          <div id="meaning-container" class="speech speech-ai">
+            <h2>Meaning</h2>
+            <p id="word-meaning">Fetching...</p>
+          </div>
+        </div>
+        <div class="chatbot-input-container">
+          <input type="text" id="chatbox-input" placeholder="Type word..." />
+          <button id="chatbox-send">Send</button>
+        </div>
+        <!-- <button
+          id="open-sidebar-button"
+          class="autofill-button"
+          style="opacity: 0.8; margin-top: 1em; width: 100%"
+        >
+          Open in Sidebar
+        </button> -->
+      </div>
+    </main>
+    <script src="scripts/popup.js"></script>
+  </body>
+</html>

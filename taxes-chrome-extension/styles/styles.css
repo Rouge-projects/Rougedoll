@@ -1,0 +1,159 @@
+:root {
+  --border-rad-lg: 15px;
+  --light-text: #fefefe;
+  --dark-bg: #171f26; /* Dark background for the chatbot */
+  --neumorphic-bg: #ffffff; /* Neumorphic background for the button */
+  --neumorphic-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2),
+    -8px -8px 15px rgba(255, 255, 255, 0.7);
+  width: 400px;
+  height: 100px;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  width: 100%;
+}
+
+/* Main background for the page */
+main {
+  background-color: #171f26;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Chatbot container */
+.chatbot-container {
+  background-color: var(--dark-bg);
+  width: 360px;
+  min-height: 380px;
+  border-radius: var(--border-rad-lg);
+  padding: 1em;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Header styling */
+.chatbot-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6em;
+  color: var(--light-text);
+}
+
+/* Autofill button styling */
+.autofill-button {
+  background: var(--neumorphic-bg);
+  border: none;
+  border-radius: var(--border-rad-lg);
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  color: #333;
+  font-weight: bold;
+}
+
+.autofill-button:hover {
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2),
+    -4px -4px 10px rgba(255, 255, 255, 0.7);
+}
+
+/* Form chat assistant heading */
+.form-chat-assistant {
+  text-align: center;
+  margin: 1em 0;
+}
+
+/* Chat window styling */
+.chatbot-conversation-container {
+  height: 250px;
+  overflow-y: scroll;
+  margin: 1em 0;
+  padding: 5px;
+  background-color: #f4f4f9; /* Light background for chat area */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: var(--border-rad-lg);
+}
+
+/* Hide scrollbar for chat area */
+.chatbot-conversation-container::-webkit-scrollbar {
+  display: none;
+}
+
+.chatbot-conversation-container::-moz-scrollbar {
+  display: none;
+}
+
+/* Speech bubbles styling */
+.speech {
+  padding: 1em;
+  max-width: 240px;
+  color: var(--light-text);
+  min-width: 90%;
+  border-radius: var(--border-rad-lg);
+  font-size: 1.07em;
+}
+
+.speech:first-child {
+  margin-top: 0;
+}
+
+.speech-ai {
+  background: #334959;
+  margin: 1.2em 1em 0 0;
+  text-wrap: wrap;
+}
+
+.speech-human {
+  margin: 1.2em 0 0 1em;
+  background: #2f4f4f;
+  text-wrap: wrap;
+}
+
+/* Input container styling */
+.chatbot-input-container {
+  display: flex;
+  margin-top: 1em; /* Space between chat window and input */
+}
+
+input[type="text"],
+button {
+  background-color: transparent;
+  border: 1px solid #586e88;
+  border-radius: var(--border-rad-lg);
+  padding: 1em;
+  color: var(--light-text);
+}
+
+input[type="text"] {
+  width: 100%;
+  border-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+button {
+  border-left: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  background-color: var(--dark-bg);
+  color: var(--light-text);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #586e88;
+}
+
+/* Responsive Design */
+@media (max-width: 700px) {
+  .chatbot-container {
+    width: 100%;
+  }
+}
